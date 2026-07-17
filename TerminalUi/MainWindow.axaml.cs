@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Threading;
+using TerminalUi.UC;
 
 namespace TerminalUi
 {
@@ -12,18 +13,20 @@ namespace TerminalUi
 
             Instance = this;
 
-            ChangeUC(new ConsoleCommandUC());
+            ChangeUC(new ConsoleCommandInputUC());
         }
 
-        public static MainWindow Instance { get; private set;  }
+        private void TitleBar_PointerPressed(object sender, PointerPressedEventArgs e) => BeginMoveDrag(e);
+
+        public static MainWindow Instance { get; private set; }
         public void ChangeUC(UserControl uc, string title = "Termina Ui")
         {
             spDisplay.Children.Add(uc);
-            this.Title = title;
+            TitleTextBlock.Text = title;
 
             Dispatcher.UIThread.Post(() =>
             {
-                var textBox = uc.FindControl<TextBox>("txtInput");
+                var textBox = uc.FindControl<TextBox>("InputText");
                 textBox?.Focus();
             }, DispatcherPriority.Loaded);
         }

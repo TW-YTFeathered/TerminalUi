@@ -4,13 +4,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="TerminalUi.MainWindow"
+        Title=" "
         Background="Black"
-        Title="TerminalUi">
+        RequestedThemeVariant="Dark"
+        ExtendClientAreaToDecorationsHint="True">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  HorizontalScrollBarVisibility="Disabled"
-                  AllowAutoHide="False">
-        <StackPanel x:Name="spDisplay"
-                Orientation="Vertical"/>
-    </ScrollViewer>
+    <Grid RowDefinitions="40, *">
+        <Grid Grid.Row="0" 
+              Background="#FF0F0F0F"
+              ColumnDefinitions="*, Auto"
+              PointerPressed="TitleBar_PointerPressed">
+
+            <TextBlock x:Name="TitleTextBlock"
+                       Grid.Column="0"
+                       Text="Termina Ui"
+                       Foreground="White"
+                       VerticalAlignment="Center"
+                       Margin="15,0,0,0"
+                       FontSize="12"/>
+
+            <Border Grid.Column="1" Width="140" Background="Transparent"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled"
+                      AllowAutoHide="False">
+            <StackPanel x:Name="spDisplay"
+                        Orientation="Vertical"/>
+        </ScrollViewer>
+    </Grid>
+
 </Window>
