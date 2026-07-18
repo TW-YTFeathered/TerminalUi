@@ -7,18 +7,19 @@ namespace TerminalUi.UC;
 public partial class ConsoleCommandOutputUC : UserControl
 {
     private string _command;
+    private string[] _args;
 
-    public ConsoleCommandOutputUC(string cmd)
+    public ConsoleCommandOutputUC(string input)
     {
         InitializeComponent();
 
-        _command = cmd;
+        (_command, _args) = ExecuteInstructions.ParseCommand(input);
 
         Console.SetOutput(AppendText, () => _command);
 
-        if (!string.IsNullOrWhiteSpace(cmd) &&
-            ExecuteInstructions.Commands.TryGetValue(cmd, out var act))
-            act();
+        if (!string.IsNullOrWhiteSpace(input) &&
+            ExecuteInstructions.Commands.TryGetValue(_command, out var act))
+            act(_args);
     }
 
     public void AppendText(string text) =>
