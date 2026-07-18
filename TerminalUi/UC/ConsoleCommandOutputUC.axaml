@@ -6,5 +6,8 @@
              x:Class="TerminalUi.UC.ConsoleCommandOutputUC"
              
              Loaded="UserControl_Loaded">
-  Welcome to Termina Ui!
+
+    <TextBlock x:Name="DispalyContent"
+               TextWrapping="Wrap"/>
+
 </UserControl>

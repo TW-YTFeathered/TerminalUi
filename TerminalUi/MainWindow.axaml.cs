@@ -1,6 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Threading;
+using TerminalUi.Commands;
 using TerminalUi.UC;
 
 namespace TerminalUi
@@ -10,6 +11,7 @@ namespace TerminalUi
         public MainWindow()
         {
             InitializeComponent();
+            CommandInitializer.InitCommands();
 
             Instance = this;
 

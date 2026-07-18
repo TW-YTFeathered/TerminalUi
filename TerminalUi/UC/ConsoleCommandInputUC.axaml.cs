@@ -25,14 +25,7 @@ public partial class ConsoleCommandInputUC : UserControl
             InputText.Focusable = false;
             InputText.IsHitTestVisible = false;
 
-            if (!string.IsNullOrEmpty(InputText.Text) &&
-                ExecuteInstructions.Commands.TryGetValue(InputText.Text, out var act))
-            {
-                act();
-                return;
-            }
-
-            MainWindow.Instance.ChangeUC(new ConsoleCommandOutputUC());
+            MainWindow.Instance.ChangeUC(new ConsoleCommandOutputUC(InputText.Text));
         }
     }
 }
